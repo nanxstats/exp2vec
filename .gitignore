@@ -1,0 +1,11 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+.Rprofile
+renv/
+
+data/*.gz
+data/*.tsv
+data/*.rds
