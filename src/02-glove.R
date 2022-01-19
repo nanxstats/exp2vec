@@ -12,11 +12,11 @@ dtm_tissue <- readRDS(path_dtm_tissue)
 # or pearson correlation coefficient for gene co-expression inference
 # to get the co-occurrence matrix
 
-# Convert document-term matrix to term co-occurence matrix by inner product
+# Convert document-term matrix to term co-occurrence matrix by inner product
 dtm2tcm <- function(x) {
   # Equivalent to t(x) %*% x
   y <- Matrix::crossprod(x)
-  # Correct self-cooccuerrace, see quanteda:::fcm.dfm
+  # Correct self-cooccurrence, see quanteda:::fcm.dfm
   m <- Matrix::colSums(x)
   Matrix::diag(y) <- (Matrix::diag(y) - m) / 2L
 
