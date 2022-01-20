@@ -29,5 +29,13 @@ invisible(dev.off())
 glove_dump <- readRDS(file.path("output", paste0(tissue_name, "_glove_dump.rds")))
 gene_all <- rownames(glove_dump$w_i)
 
-# Inspect the distinctive cluster: almost exclusively RNA and microRNA genes
-gene_all[intersect(which(df$x > -40 & df$x < 0), which(df$y > 60 & df$y < 80))]
+# Locate the genes in the distinctive cluster
+idx <- intersect(which(df$x > -40 & df$x < 0), which(df$y > 60 & df$y < 80))
+# Identify the cluster number
+idx_cl <- df$cluster[idx] |>
+  table() |>
+  which.max() |>
+  names() |>
+  as.numeric()
+# Inspect the cluster: many RNA genes
+gene_all[which(df$cluster == idx_cl)] |> sort()
