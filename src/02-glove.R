@@ -17,9 +17,7 @@ dtm2tcm <- function(x) {
   # Equivalent to t(x) %*% x
   y <- Matrix::crossprod(x)
   # Correct self-cooccurrence, see quanteda:::fcm.dfm
-  m <- Matrix::colSums(x)
-  Matrix::diag(y) <- (Matrix::diag(y) - m) / 2L
-
+  Matrix::diag(y) <- (Matrix::diag(y) - Matrix::colSums(x)) / 2L
   y
 }
 
